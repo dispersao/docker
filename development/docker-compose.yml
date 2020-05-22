@@ -1,0 +1,44 @@
+# Use root/example as user/password credentials
+version: '3.2'
+
+services:
+
+  db:
+    image: mariadb/server:10.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: dispersao_sequences
+      MYSQL_USER: dispersao_user
+      MYSQL_PASSWORD: ${MYSQL_DISPERSAO_PASSWORD}
+    volumes:
+      - ./mysql/dispersao.sql:/docker-entrypoint-initdb.d/dispersao.sql
+
+  cms:
+    image: dispersao/cms
+    depends_on:
+      - db
+    environment:
+      - database_host=db
+      - mysql_dispersao_password=${MYSQL_DISPERSAO_PASSWORD}
+    ports:
+      - "1337:1337"
+
+  socket-server:
+    image: dispersao/socket-server
+    ports:
+      - 8081:8081
+      - target: 7400
+        published: 7400
+        protocol: udp
+        mode: host
+
+  master:
+    image: dispersao/master
+    depends_on:
+      - db
+      - cms
+      - socket-server
+    ports:
+      - 3000:3000
+      - 3001:3001
