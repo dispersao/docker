@@ -1,13 +1,17 @@
 # docker
 docker files and instructions for Dispersão
 
-## prepare images and files
+---------------
+## development
+
+### prepare images and files
 
 copy dump file dispersao.sql to ./development/mysql folder
+
 (the name of the file must be dispersao.sql)
 
 create config.json file in ./development/dispersao-master, with the following content, replacing mastersecret with the master password:
-
+```
 {
 "api": {
   "url":"http://localhost:1337",
@@ -19,35 +23,39 @@ create config.json file in ./development/dispersao-master, with the following co
   "port": 8081
   }
 }
-
+```
 ### create images
+```
 cd development/cms
 docker build -t dispersao/cms .
 
-cd development//socket-server
+cd ../socket-server
 docker build -t dispersao/socket-server .
 
-cd development//dispersao-master
+cd ../dispersao-master
 docker build -t dispersao/master .
+```
 
-
-## start services for the first time (creates the containers)
-cd development/
+### start services for the first time (creates the containers)
+```
+cd ../
 export  export MYSQL_ROOT_PASSWORD=anypass
 export MYSQL_DISPERSAO_PASSWORD=supersecret
-
-(use anypass for root, use the correct pass for dipersao db)
-
+```
+(use anypass for root, use the correct pass for dispersao db)
+```
 docker-compose up -d
-
-## stop services
-
+```
+### stop services
+```
 docker-compose stop
+```
 
-## restart services
-
+### restart services
+```
 docker-compose start
+```
 
-## stop service and erase containers (data is lost)
-
+### stop service and erase containers (data is lost)
+```
 docker-compose down
