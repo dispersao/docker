@@ -3,11 +3,9 @@ version: '3.5'
 services:
 
   master:
-    image: node:12.6
+    build: ./dispersao-master
+    image: dispersao/master
     command: npm start
     ports:
       - 3000:3000
       - 3001:3001
-    volumes:
-      - ${MASTER_SRC}:/dispersao-master
-    working_dir: /dispersao-master
