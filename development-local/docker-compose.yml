@@ -28,18 +28,18 @@ services:
     working_dir: /cms
 
 
-  socket-server:
-    image: node:12.6
-    command: sh runsocket.sh
-    ports:
-      - 8081:8081
-      - target: 7400
-        published: 7400
-        protocol: udp
-        mode: host
-    volumes:
-      - ${SOCKET_SERVER_SRC}:/socket-server
-    working_dir: /socket-server
+#  socket-server:
+#    image: node:12.6
+#    command: sh runsocket.sh
+#    ports:
+#      - 8081:8081
+#      - target: 7400
+#        published: 7400
+#        protocol: udp
+#        mode: host
+#    volumes:
+#      - ${SOCKET_SERVER_SRC}:/socket-server
+#    working_dir: /socket-server
 
   master:
     image: node:12.6
@@ -47,7 +47,7 @@ services:
     depends_on:
       - db
       - cms
-      - socket-server
+#      - socket-server
     ports:
       - 3000:3000
       - 3001:3001
