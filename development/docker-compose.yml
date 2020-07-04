@@ -1,5 +1,5 @@
 # Use root/example as user/password credentials
-version: '3.2'
+version: '3.5'
 
 services:
 
@@ -15,6 +15,7 @@ services:
       - ./mysql/dispersao.sql:/docker-entrypoint-initdb.d/dispersao.sql
 
   cms:
+    build: ./cms
     image: dispersao/cms
     depends_on:
       - db
@@ -24,21 +25,12 @@ services:
     ports:
       - "1337:1337"
 
-  socket-server:
-    image: dispersao/socket-server
-    ports:
-      - 8081:8081
-      - target: 7400
-        published: 7400
-        protocol: udp
-        mode: host
-
   master:
+    build: ./dispersao-master
     image: dispersao/master
     depends_on:
       - db
       - cms
-      - socket-server
     ports:
       - 3000:3000
       - 3001:3001
