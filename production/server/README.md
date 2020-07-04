@@ -12,11 +12,13 @@ copy dump file dispersao.sql to  production/server/ folder
 
 (the name of the file must be dispersao.sql)
 
+copy images to production/server/cms/uploads/
+
 edit production/server/.env file with the mysql user and pass
 
 ### start services for the first time (creates the containers)
 ```
-docker-compose up 
+docker-compose up
 ```
 ### stop services
 ```
