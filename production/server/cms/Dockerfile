@@ -4,7 +4,7 @@ WORKDIR /
 
 RUN git clone -b docker https://github.com/dispersao/cms.git
 
-
+COPY ./uploads/* /cms/public/uploads/
 
 WORKDIR cms
 
