@@ -14,8 +14,8 @@ services:
       - ${MYSQL_DUMP_FILE}:/docker-entrypoint-initdb.d/dispersao.sql
 
   cms:
-    image: node:12.6
-    command: npm run develop
+    build: ./cms
+    image: dispersao/cms
     depends_on:
       - db
     environment:
@@ -23,7 +23,4 @@ services:
       - mysql_dispersao_password=${MYSQL_DISPERSAO_PASSWORD}
     ports:
       - "1337:1337"
-    volumes:
-      - ${CMS_SRC}:/cms
     working_dir: /cms
-
