@@ -12,6 +12,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_DISPERSAO_PASSWORD}
     volumes:
       - ${MYSQL_DUMP_FILE}:/docker-entrypoint-initdb.d/dispersao.sql
+    ports:
+      - "6633:3306"
 
   cms:
     build: ./cms
