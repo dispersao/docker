@@ -2,7 +2,7 @@ FROM node:12.6
 
 WORKDIR /
 
-RUN git clone -b docker https://github.com/dispersao/cms.git
+RUN git clone https://github.com/dispersao/cms.git
 
 COPY ./uploads/* /cms/public/uploads/
 
