@@ -1,0 +1,5 @@
+.DS_Store
+development-local/prod_pass
+*.sql
+*.rdb
+
