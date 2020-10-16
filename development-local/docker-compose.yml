@@ -48,7 +48,7 @@ services:
 
   master:
     image: node:12.6
-    command: npm start
+    command: npm start -- --api_url ${MASTER_API_URL} --api_user ${MASTER_USER} --api_password ${MASTER_PASSWORD}
     depends_on:
       - db
 #      - socket-server
