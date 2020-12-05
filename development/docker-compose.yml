@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: dispersao_sequences
-      MYSQL_USER: dispersao_user
+      MYSQL_USER: ${MYSQL_DISPERSAO_USER}
       MYSQL_PASSWORD: ${MYSQL_DISPERSAO_PASSWORD}
     volumes:
       - ./mysql/dispersao.sql:/docker-entrypoint-initdb.d/dispersao.sql
@@ -23,6 +23,7 @@ services:
     environment:
       - database_host=db
       - redis_host=redis
+      - mysql_dispersao_user=${MYSQL_DISPERSAO_USER}
       - mysql_dispersao_password=${MYSQL_DISPERSAO_PASSWORD}
       - redis_password=${REDIS_PASSWORD}
     ports:
