@@ -10,4 +10,4 @@ WORKDIR cms
 
 RUN npm ci
 
-CMD ["npm", "run", "develop"]
+CMD ["npm", "start"]
