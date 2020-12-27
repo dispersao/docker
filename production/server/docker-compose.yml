@@ -13,7 +13,7 @@ services:
     volumes:
       - ${MYSQL_DUMP_FILE}:/docker-entrypoint-initdb.d/dispersao.sql
     ports:
-      - "6633:3306"
+      - "${MYSQL_PORT_EXT}:${MYSQL_PORT_INT}"
 
   cms:
     build: ./cms
@@ -26,6 +26,7 @@ services:
       - redis_host=redis
       - mysql_dispersao_user=${MYSQL_DISPERSAO_USER}
       - mysql_dispersao_password=${MYSQL_DISPERSAO_PASSWORD}
+      - mysql_port=${MYSQL_PORT_INT}
       - redis_password=${REDIS_PASSWORD}
     ports:
       - "1337:1337"
