@@ -5,7 +5,7 @@ services:
   master:
     build: ./dispersao-master
     image: dispersao/master
-    command: npm start
+    command: npm start -- --api_url ${MASTER_API_URL} --api_user ${MASTER_USER} --api_password ${MASTER_PASSWORD}
     ports:
       - 3000:3000
       - 3001:3001

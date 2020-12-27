@@ -4,7 +4,7 @@ services:
 
   db:
     image: mariadb/server:10.3
-    restart: always
+    # restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: dispersao_sequences
@@ -12,38 +12,32 @@ services:
       MYSQL_PASSWORD: ${MYSQL_DISPERSAO_PASSWORD}
     volumes:
       - ${MYSQL_DUMP_FILE}:/docker-entrypoint-initdb.d/dispersao.sql
+    ports:
+      - "${MYSQL_PORT_EXT}:${MYSQL_PORT_INT}"
 
   cms:
     image: node:12.6
     command: npm run develop
     depends_on:
       - db
+      - redis
     environment:
       - database_host=db
+      - redis_host=redis
+      - mysql_dispersao_user=${MYSQL_DISPERSAO_USER}
       - mysql_dispersao_password=${MYSQL_DISPERSAO_PASSWORD}
+      - mysql_port=${MYSQL_PORT_INT}
+      - redis_password=${REDIS_PASSWORD}
+  
     ports:
       - "1337:1337"
     volumes:
       - ${CMS_SRC}:/cms
     working_dir: /cms
 
-
-#  socket-server:
-#    image: node:12.6
-#    command: sh runsocket.sh
-#    ports:
-#      - 8081:8081
-#      - target: 7400
-#        published: 7400
-#        protocol: udp
-#        mode: host
-#    volumes:
-#      - ${SOCKET_SERVER_SRC}:/socket-server
-#    working_dir: /socket-server
-
   master:
     image: node:12.6
-    command: npm start
+    command: npm start -- --api_url ${MASTER_API_URL} --api_user ${MASTER_USER} --api_password ${MASTER_PASSWORD}
     depends_on:
       - db
       - cms
@@ -54,3 +48,15 @@ services:
     volumes:
       - ${MASTER_SRC}:/dispersao-master
     working_dir: /dispersao-master
+
+  redis:
+    image: redis:alpine
+    # restart: always
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    ports:
+      - 6379:6379
+    volumes:
+      - $PWD/redis-data:/data
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
