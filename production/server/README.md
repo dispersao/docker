@@ -2,7 +2,7 @@
 docker files and instructions for Dispersão
 
 ---------------
-## development
+## production
 
 ### prepare images and files
 
