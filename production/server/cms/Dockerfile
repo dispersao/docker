@@ -16,4 +16,4 @@ RUN git checkout track_errors && git pull
 
 RUN npm ci
 
-CMD ["npm", "run" "develop"]
+CMD ["npm", "run", "develop"]
