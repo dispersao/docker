@@ -2,4 +2,7 @@
 development-local/prod_pass
 *.sql
 *.rdb
+production/server/cms/uploads/
+production/server/.env
+production/player/.env
 
