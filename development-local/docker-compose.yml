@@ -17,7 +17,8 @@ services:
 
   cms:
     image: node:12.6
-    command: npm run develop
+    # command: npm run develop
+    command:  node --inspect=0.0.0.0:9229 ./node_modules/strapi/bin/strapi.js develop
     depends_on:
       - db
       - redis
