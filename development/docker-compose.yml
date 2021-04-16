@@ -8,11 +8,11 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: dispersao_sequences
+      MYSQL_DATABASE: ${MYSQL_DISPERSAO_DB
       MYSQL_USER: ${MYSQL_DISPERSAO_USER}
       MYSQL_PASSWORD: ${MYSQL_DISPERSAO_PASSWORD}
     volumes:
-      - ./mysql/dispersao.sql:/docker-entrypoint-initdb.d/dispersao.sql
+      - ${MYSQL_DUMP_FILE}:/docker-entrypoint-initdb.d/dispersao.sql
     ports:
       - "${MYSQL_PORT_EXT}:${MYSQL_PORT_INT}"
 
@@ -25,6 +25,7 @@ services:
     environment:
       - database_host=db
       - redis_host=redis
+      - mysql_dispersao_db=${MYSQL_DISPERSAO_DB}
       - mysql_dispersao_user=${MYSQL_DISPERSAO_USER}
       - mysql_dispersao_password=${MYSQL_DISPERSAO_PASSWORD}
       - mysql_port=${MYSQL_PORT_INT}
