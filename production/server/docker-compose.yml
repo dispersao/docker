@@ -30,6 +30,7 @@ services:
       - mysql_port=${MYSQL_PORT_INT}
       - redis_password=${REDIS_PASSWORD}
       - redis_port=${REDIS_PORT_INT}
+      - NODE_ENV=production
     ports:
       - "1337:1337"
     working_dir: /cms
