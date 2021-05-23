@@ -16,9 +16,10 @@ services:
       - "${MYSQL_PORT_EXT}:${MYSQL_PORT_INT}"
 
   cms:
-    image: node:12.6
+    image: node:14.17
+    command: npm run installAndDevelop
     # command: npm run develop
-    command:  node --inspect=0.0.0.0:9229 ./node_modules/strapi/bin/strapi.js develop
+    # command:  node --inspect=0.0.0.0:9229 ./node_modules/strapi/bin/strapi.js develop
     depends_on:
       - db
       - redis

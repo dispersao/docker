@@ -1,8 +1,8 @@
-FROM node:12.6
+FROM node:14.17
 
 WORKDIR /
 
-RUN git clone https://github.com/dispersao/cms.git
+RUN git clone https://github.com/dispersao/cms.git#strapi_upgrade
 
 COPY ./uploads/* /cms/public/uploads/
 
