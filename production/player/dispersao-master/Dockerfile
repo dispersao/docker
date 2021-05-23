@@ -1,4 +1,4 @@
-FROM node:12.6
+FROM node:14.17
 
 EXPOSE 3000
 EXPOSE 3001
@@ -12,6 +12,7 @@ RUN git clone https://github.com/dispersao/dispersao-master.git
 COPY ./config.json /dispersao-master/public/config.json
 
 WORKDIR /dispersao-master
+RUN git checkout strapi_3.6.2_update_adjustments
 
 RUN npm ci
 

@@ -30,8 +30,8 @@ services:
       - mysql_port=${MYSQL_PORT_INT}
       - redis_password=${REDIS_PASSWORD}
       - redis_port=${REDIS_PORT_INT}
-      - NODE_ENV=production
-      - HOST=http://movieserver.dispersao.net/
+      # - NODE_ENV=production
+      # - HOST=http://movieserver.dispersao.net/
       - ADMIN_JWT_SECRET=e61daf9f70004828c5600f7af20d6ddf
     ports:
       - "1337:1337"
