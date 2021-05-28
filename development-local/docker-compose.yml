@@ -17,8 +17,8 @@ services:
 
   cms:
     image: node:14.17
-    command: npm run installAndDevelop
-    # command: npm run develop
+    # command: npm run installAndDevelop
+    command: npm run develop
     # command:  node --inspect=0.0.0.0:9229 ./node_modules/strapi/bin/strapi.js develop
     depends_on:
       - db
@@ -32,9 +32,9 @@ services:
       - mysql_port=${MYSQL_PORT_INT}
       - redis_password=${REDIS_PASSWORD}
       - redis_port=${REDIS_PORT_INT}
-  
+      - ADMIN_JWT_SECRET=${JWT_SECRET}  
     ports:
-      - "1337:1337"
+      - 1337:1337
     volumes:
       - ${CMS_SRC}:/cms
     working_dir: /cms
