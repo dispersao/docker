@@ -18,6 +18,7 @@ services:
   cms:
     build: ./cms
     image: dispersao/cms
+    command: npm start
     depends_on:
       - db
       - redis
@@ -31,7 +32,7 @@ services:
       - redis_password=${REDIS_PASSWORD}
       - redis_port=${REDIS_PORT_INT}
       - ADMIN_JWT_SECRET=${JWT_SECRET}
-      - NODE_ENV=production
+      # - NODE_ENV=production
       - PUBLIC_URL=http://movieserver.dispersao.net
     ports:
       - 1337:1337
