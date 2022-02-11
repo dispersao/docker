@@ -4,9 +4,6 @@ WORKDIR /
 
 RUN git clone https://github.com/dispersao/cms.git
 WORKDIR cms
-RUN ls
-RUN git fetch
-RUN git checkout strapi_upgrade
 
 COPY ./uploads/* /cms/public/uploads/
 

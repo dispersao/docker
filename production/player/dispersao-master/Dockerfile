@@ -12,7 +12,6 @@ RUN git clone https://github.com/dispersao/dispersao-master.git
 COPY ./config.json /dispersao-master/public/config.json
 
 WORKDIR /dispersao-master
-RUN git checkout strapi_3.6.2_update_adjustments
 
 RUN npm ci
 
