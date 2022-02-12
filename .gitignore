@@ -5,4 +5,7 @@ development-local/prod_pass
 production/server/cms/uploads/
 production/server/.env
 production/player/.env
+production/server/cms/uploads/**.jpg
+production/server/cms/uploads/**.png
+production/server/cms/uploads/**.mp4
 

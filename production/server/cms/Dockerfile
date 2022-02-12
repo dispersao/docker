@@ -1,12 +1,11 @@
-FROM node:12.6
+FROM node:14.17
 
 WORKDIR /
 
 RUN git clone https://github.com/dispersao/cms.git
+WORKDIR cms
 
 COPY ./uploads/* /cms/public/uploads/
-
-WORKDIR cms
 
 RUN npm ci
 
