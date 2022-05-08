@@ -7,7 +7,7 @@ WORKDIR /
 
 ENV PATH /dispersao-master/node_modules/.bin:$PATH
 
-RUN git clone https://github.com/dispersao/dispersao-master.git
+RUN git clone -b delete_sessioncontent_and_scriptsequences https://github.com/dispersao/dispersao-master.git
 
 COPY ./config.json /dispersao-master/public/config.json
 
