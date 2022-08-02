@@ -2,7 +2,7 @@ FROM node:14.17
 
 WORKDIR /
 
-RUN git clone -b middleware_cache https://github.com/dispersao/cms.git
+RUN git clone https://github.com/dispersao/cms.git
 WORKDIR cms
 
 COPY ./uploads/* /cms/public/uploads/
